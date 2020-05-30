@@ -13,6 +13,7 @@ class Feed(models.Model):  # 모델 클래스명은 단수형을 사용 (Feeds(x
     author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     like_users = models.ManyToManyField(
         User, blank=True, related_name='like_feeds', through='Like')
+    photo = models.ImageField(blank=True, upload_to='feed_photos')
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(blank=True, null=True)
 

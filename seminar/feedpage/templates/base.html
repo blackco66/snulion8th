@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <title>snulion</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'feedpage/base.css' %}"/>
+    {% load sass_tags %}
+    <link href="{% sass_src 'feedpage/main.scss' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'feedpage/style.css' %}" rel="stylesheet" />
   </head>
   <header>
     <div class="header-inner">

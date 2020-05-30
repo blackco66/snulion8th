@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'feedpage.apps.FeedpageConfig',
+    'sass_processor',
 ]
 
 MIDDLEWARE = [
@@ -124,5 +125,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # 추가
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'seminar', 'static'),
 )
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+SASS_PROCESSOR_ENABLED = True
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'feedpage', 'static')
+
 LOGIN_REDIRECT_URL = "/feeds/"
 LOGOUT_REDIRECT_URL = None
