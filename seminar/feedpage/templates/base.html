@@ -2,42 +2,56 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>snulion</title>
+    <title>lionstagram</title>
     {% load static %}
+    <link rel="shortcut icon" type="mask-icon" href="{% static "img/logo.ico" %}">
     {% load sass_tags %}
     <link href="{% sass_src 'feedpage/main.scss' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'feedpage/style.css' %}" rel="stylesheet" />
   </head>
   <header>
     <div class="header-inner">
+      <div class="logo">
+        <a href="{% url 'index' %}">
+          <img class="logo-img" src="{% static "img/logo_img.png" %}"/>
+        </a>
+      </div>
+      <div class="search">
+        <input class="search-box" type="text" placeholder="검색">
+      </div>
+      <div class="button">
+        <div class = "icon">
+          <a href = "{% url 'index' %}">
+            <img src="{% static "img/bell-regular.svg" %}"/>
+          </a>
+        </div>
+        <div class = "icon">
+          <a href = "{% url 'index' %}">
+            <img src="{% static "img/heart-regular.svg" %}"/>
+          </a>
+        </div>
+        <div class = "icon">
+          {% if user.is_authenticated %}
+            <a href = "{% url 'mypage' %}">
+              <img src="{% static "img/user-solid.svg" %}"/>
+            </a>
+          {% else %}
+            <img src="{% static "img/user-line.svg" %}"/>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="user-status">
       {% if user.is_authenticated %}
-        {{ user.get_username }}님, 안녕하세요<br>
-        학교: 
-        {%if user.profile.college %}{{ user.profile.college }}
-        {% else %}-
-        {% endif %}<br>
-        전공: 
-        {%if user.profile.major %}{{ user.profile.major }}
-        {% else %}-
-        {% endif %}<br>
-        생년월일: 
-        {%if user.profile.birth %}{{ user.profile.birth }}
-        {% else %}-
-        {% endif %}<br>
-        sns: 
-        {%if user.profile.sns %}{{ user.profile.sns }}
-        {% else %}-
-        {% endif %}<br>
-        <div style="text-align: right">                 
-          내가 좋아한 글 : {{ user.like_feeds.count }}개   
-        </div>           
-        <a href="{% url 'logout'%}?next={{request.path}}" onclick="return confirm('정말로 로그아웃 하시겠습니까?');">로그아웃</a>
+        <p style="font-size:0.9em">{{ user.get_username }}님, 안녕하세요</p> 
+        <a href="{% url 'logout'%}?next={{request.path}}" onclick="return confirm('정말로 로그아웃 하시겠습니까?');" style="text-decoration:none;color:black;font-size:0.8em">
+          로그아웃
+        </a>
       {% else %}
         <a href="{% url 'signup' %}">회원가입</a>
         <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
       {% endif %}
     </div>
-    Snulion Feed Page
+    
   </header>
   <body>
   {% block content %}

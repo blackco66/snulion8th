@@ -39,3 +39,7 @@ def follow_manager(request, pk):
         f.follow_from, f.follow_to = follow_from, follow_to
         f.save()
     return redirect('/feeds')
+
+
+def mypage(request):
+    return render(request, 'accounts/mypage.html')

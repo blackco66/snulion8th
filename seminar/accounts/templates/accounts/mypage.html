@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content%}
+<div>
+  {% if not user.is_authenticated %}
+    <p>로그인을 해주세요.</p>
+    <a href="{% url 'signup' %}">회원가입</a>
+    <a href="{% url 'login'%}?next=/feeds/">로그인</a>
+  {% else %}
+    <ul>
+      <li>username: {{ user.get_username }}</li>
+      <li>학교: 
+        {%if user.profile.college %}{{ user.profile.college }}
+        {% else %}-
+        {% endif %}
+      </li>
+      <li>전공: 
+        {%if user.profile.major %}{{ user.profile.major }}
+        {% else %}-
+        {% endif %}
+      </li>
+      <li>생년월일: 
+        {%if user.profile.birth %}{{ user.profile.birth }}
+        {% else %}-
+        {% endif %}
+      </li>
+      <li>sns: 
+        {%if user.profile.sns %}{{ user.profile.sns }}
+        {% else %}-
+        {% endif %}
+      </li>
+      <li>내가 좋아한 글 : {{ user.like_feeds.count }}개</li>
+    </ul>
+    <br/>
+    <a href="/feeds/">정보수정(!!!TODO!!!)</a>
+  {% endif %}
+</div>
+{% endblock content%}
