@@ -15,7 +15,7 @@ def index(request):
         photo = request.FILES.get('photo', False)
         Feed.objects.create(title=title, content=content,
                             author=request.user, photo=photo)
-        return redirect('/feeds')
+        return JsonResponse({"message": "created!!"}, status=201)
 
 
 def new(request):
@@ -80,3 +80,6 @@ def feed_like(request, pk):
         'like_count': like_list.count()
     }
     return JsonResponse(context)
+
+def map(request):
+    return render(request, 'feedpage/map.html')
