@@ -15,7 +15,7 @@ def index(request):
         photo = request.FILES.get('photo', False)
         Feed.objects.create(title=title, content=content,
                             author=request.user, photo=photo)
-        return redirect('/feeds')
+        return JsonResponse({"message": "created!!"}, status=201)
 
 
 def new(request):

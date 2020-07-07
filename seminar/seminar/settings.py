@@ -34,12 +34,18 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'feedpage.apps.FeedpageConfig',
     'sass_processor',
+
+    # allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +139,13 @@ SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'feedpage', 'static')
 
 LOGIN_REDIRECT_URL = "/feeds/"
 LOGOUT_REDIRECT_URL = None
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+
+ACCOUNT_LOGOUT_ON_GET = True
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
