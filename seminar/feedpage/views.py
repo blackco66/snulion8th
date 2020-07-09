@@ -91,3 +91,7 @@ def comment_like(request, id, cid):
         CommentLike.objects.create(
             user_id=request.user.id, comment_id=comment.id)
     return redirect('/feeds')
+
+
+def map(request):
+    return render(request, 'feedpage/map.html')

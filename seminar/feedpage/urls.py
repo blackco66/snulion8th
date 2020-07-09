@@ -13,4 +13,5 @@ urlpatterns = [
     path('<int:pk>/like/', views.feed_like, name='like'),
     path('<int:id>/comments/<int:cid>/like/',
          views.comment_like, name='like_comment'),
+    path('map/', views.map, name='map'),
 ]
